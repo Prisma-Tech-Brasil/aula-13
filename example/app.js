@@ -1,19 +1,14 @@
-class ContaBancaria {
-  constructor(titular, saldo) {
+function ContaBancaria (titular, saldo) {
     this.titular = titular;
     this.saldo = saldo;
+  
+
+  depositar = function(valor) {
+    this.saldo = this.saldo + valor
+    console.log(`Valor de ${valor.toFixed(2)} depositado com sucesso.`)
   }
 
-  depositar(valor) {
-    if (valor > 0) {
-      this.saldo += valor;
-      console.log(`Depósito de R$${valor.toFixed(2)} realizado com sucesso.`);
-    } else {
-      console.log("O valor do depósito deve ser um valor positivo.");
-    }
-  }
-
-  retirar(valor) {
+  retirar = function(valor) {
     if (valor > 0) {
       if (this.saldo >= valor) {
         this.saldo -= valor;
@@ -26,7 +21,7 @@ class ContaBancaria {
     }
   }
 
-  consultarSaldo() {
+  consultarSaldo = function() {
     console.log(`O saldo atual é: ${this.saldo.toFixed(2)}.`)
   }
 }
