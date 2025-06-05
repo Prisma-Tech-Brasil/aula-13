@@ -1,0 +1,42 @@
+
+🧠 EXERCÍCIOS SOBRE ITERAÇÕES EM ARRAYS
+
+Exercício 1 – Soma de elementos
+Objetivo: Use forEach para somar todos os elementos de um array e exibir o resultado.
+const numeros = [10, 20, 30, 40];
+
+Exercício 2 – Dobrar valores
+Objetivo: Use map para criar um novo array com o dobro de cada número do array original.
+const numeros = [1, 2, 3, 4, 5];
+
+Exercício 3 – Filtrar pares
+Objetivo: Use filter para retornar apenas os números pares de um array.
+const numeros = [1, 4, 7, 10, 13, 16];
+
+Exercício 4 – Encontrar elemento
+Objetivo: Use find para encontrar o primeiro número maior que 50.
+const valores = [12, 25, 47, 51, 60];
+
+Exercício 5 – Soma total com reduce
+Objetivo: Use reduce para somar todos os elementos do array e exibir o total.
+const valores = [5, 10, 15];
+
+Exercício 6 – Texto com nomes
+Objetivo: Use map para transformar um array de nomes em frases como “Olá, [nome]!”.
+const nomes = ['Ana', 'Carlos', 'Marina'];
+
+Exercício 7 – Filtrar strings curtas
+Objetivo: Use filter para retornar apenas as palavras com menos de 5 letras.
+const palavras = ['sol', 'carro', 'lua', 'cachorro', 'paz'];
+
+Exercício 8 – Verificar condição com some
+Objetivo: Use some para verificar se existe algum número negativo no array.
+const numeros = [3, 7, -1, 10, 2];
+
+Exercício 9 – Verificar todos com every
+Objetivo: Use every para verificar se todos os números são maiores que zero.
+const numeros = [1, 5, 9, 10];
+
+Exercício 10 – Índice do item
+Objetivo: Use findIndex para encontrar a posição do número 7 no array.
+const numeros = [4, 6, 7, 10];
