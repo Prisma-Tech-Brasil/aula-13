@@ -1,36 +1,137 @@
-# Aula: Introdução a Objetos em JavaScript
 
-## 📚 O que Aprendemos Nesta Aula
+# 📘 JavaScript Assíncrono – Entendendo a Concorrência e o Fluxo Assíncrono
 
-Nesta aula, exploramos os conceitos básicos de objetos em JavaScript. Você aprendeu:
+JavaScript é uma linguagem **single-threaded** — ou seja, executa uma instrução por vez, em sequência. Mas mesmo assim, conseguimos lidar com **tarefas assíncronas**, como requisições de rede, timers e leitura de arquivos, sem travar a aplicação.
 
-### 🔹 O Que São Objetos
-- Estruturas que armazenam dados em pares chave-valor.
-- Objetos permitem organizar informações de forma eficiente.
+Este material cobre os seguintes tópicos:
 
-### 🔹 Como Criar e Acessar Objetos
-- Criar objetos usando chaves `{}`.
-- Acessar propriedades usando:
-  - **Notação de ponto:** `objeto.propriedade`
-  - **Notação de colchetes:** `objeto["propriedade"]`
+- Single-thread vs Multi-thread  
+- Concorrência e Event Loop  
+- Callbacks  
+- Promises  
+- Async/Await
 
-### 🔹 Modificar e Adicionar Propriedades
-- Modificar propriedades existentes.
-- Adicionar novas propriedades dinamicamente.
+---
 
-### 🔹 Métodos em Objetos
-- Funções associadas a objetos que executam ações.
-- Uso do `this` para referir-se ao próprio objeto.
+## 🧠 Single-thread vs Multi-thread
 
-### 🔹 Exercícios Práticos
-- Criamos objetos representando pessoas, carros, livros, e adicionamos métodos que interagem com suas propriedades.
+- **Single-thread:** JavaScript no navegador e no Node.js roda numa única thread. Isso significa que ele executa **uma tarefa por vez**.
+- **Multi-thread:** Outras linguagens como Java ou C++ podem usar várias threads para executar tarefas ao mesmo tempo.
 
-## 📝 Exemplos Simples
+Mas então, como o JS lida com tarefas demoradas (ex: acessar uma API)?  
+👉 Ele **não paraleliza** com threads, mas delega certas tarefas para **APIs externas** (como Web APIs no navegador ou libuv no Node.js) e continua rodando.
 
-### Criando um Objeto
-```javascript
-const carro = {
-  marca: "Toyota",
-  modelo: "Corolla",
-  ano: 2022
-};
+---
+
+## 🔄 Concorrência e o Event Loop
+
+O JavaScript usa um **modelo assíncrono baseado em eventos**. O mecanismo que faz isso funcionar é o **Event Loop**.
+
+1. O código principal entra na **Call Stack** e é executado.
+2. Tarefas assíncronas vão para a **Web API** (ex: `setTimeout`, `fetch`).
+3. Quando terminam, entram na **Callback Queue**.
+4. O **Event Loop** verifica se a Call Stack está vazia, e se estiver, move tarefas da fila para a pilha.
+
+**Visual simplificado:**
+
+```txt
+[ Call Stack ]
+     |
+     v
+[ Event Loop ] <--- [ Callback Queue ] <--- [ Web APIs ]
+```
+
+---
+
+## 🔁 Callbacks
+
+Um **callback** é uma função passada como argumento para ser executada depois de uma operação.
+
+```js
+function saudacao(nome, callback) {
+  console.log(`Olá, ${nome}!`);
+  callback();
+}
+
+saudacao("Lucas", function() {
+  console.log("Seja bem-vindo!");
+});
+```
+
+### Problema: Callback Hell
+
+Quando você encadeia muitos callbacks, o código vira uma pirâmide difícil de entender.
+
+```js
+fazerAlgo(function() {
+  fazerOutraCoisa(function() {
+    esperarMaisUmPouco(function() {
+      console.log("Callback Hell!");
+    });
+  });
+});
+```
+
+---
+
+## 🧪 Promises
+
+Uma **Promise** representa algo que **vai acontecer no futuro** — sucesso (resolve) ou falha (reject).
+
+```js
+const promessa = new Promise((resolve, reject) => {
+  const sucesso = true;
+  if (sucesso) {
+    resolve("Deu certo!");
+  } else {
+    reject("Deu erro!");
+  }
+});
+
+promessa
+  .then((mensagem) => console.log(mensagem))
+  .catch((erro) => console.error(erro));
+```
+
+### Estados de uma Promise:
+
+- **Pending:** ainda está acontecendo.
+- **Fulfilled:** deu certo.
+- **Rejected:** deu erro.
+
+---
+
+## ✨ Async/Await
+
+O `async/await` é uma forma mais legível de lidar com Promises, como se fosse código síncrono.
+
+```js
+async function executar() {
+  try {
+    const resposta = await fetch("https://api.exemplo.com");
+    const dados = await resposta.json();
+    console.log(dados);
+  } catch (erro) {
+    console.error("Erro:", erro);
+  }
+}
+```
+
+---
+
+## ✅ Quando usar cada um?
+
+| Tarefa                           | Melhor abordagem |
+|----------------------------------|------------------|
+| Pequenas ações sequenciais       | Callbacks        |
+| Operações encadeadas ou complexas| Promises         |
+| Código mais limpo e fácil        | Async/Await      |
+
+---
+
+## 📚 Resumo
+
+- JS é single-thread, mas lida com concorrência via Event Loop.
+- Callbacks são funções executadas depois de algo acontecer.
+- Promises tornam o código mais legível e tratam erros com `.catch`.
+- Async/Await é a forma mais moderna e clara de usar Promises.

@@ -1,0 +1,27 @@
+🧪 Atividade 1 – Simulando um atraso com callback
+Objetivo: Entender como os callbacks funcionam em tarefas assíncronas.
+Enunciado:
+Simule uma função chamada carregarDados que leva 2 segundos para executar e então chama uma função de callback que exibe "Dados carregados.".
+
+🧪 Atividade 2 – Gerando Fibonacci com Callback
+Objetivo: Criar uma função que gera a sequência de Fibonacci e chama uma função callback com o resultado.
+Enunciado:
+Crie uma função chamada gerarFibonacci que recebe dois parâmetros:
+  um número n indicando quantos elementos da sequência devem ser gerados
+  uma função de callback que será chamada com o array gerado.
+
+🧪 Atividade 3 – Promise que resolve ou rejeita
+Objetivo: Criar uma promise manualmente.
+Enunciado:
+Crie uma função verificarNumero(numero) que retorna uma Promise. Se o número for par, resolve com a mensagem "Número par"; se for ímpar, rejeita com "Número ímpar".
+
+🧪 Atividade 4 – Usando .then() e .catch()
+Objetivo: Praticar o consumo de Promises.
+Enunciado:
+Use a função da atividade anterior (verificarNumero) passando um número qualquer e trate o resultado usando .then() e .catch().
+
+🧪 Atividade 5 – Refatorando para async/await
+Objetivo: Usar async/await para trabalhar com Promises de forma mais legível.
+Enunciado:
+Crie uma função assíncrona chamada processarNumero() que chama verificarNumero() com um número e exibe o resultado no console usando try e catch.
+
