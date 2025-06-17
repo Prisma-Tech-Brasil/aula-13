@@ -1,3 +1,8 @@
+async function obterDados() {
+  const resposta = await fetch("https://pokeapi.co/api/v2/pokemon/");
+  return await resposta.json();
+}
+
 async function buscarDados() {
   try {
     const resultado = await obterDados();
